@@ -6,7 +6,7 @@
 
 1.定制修改了mybatis-plus 中TableInfo 代码，需要将此类class ，替换到 com.baomidou:mybatis-plus-generator jar 包中
 2.包名设置为 公共包最大包目录
-3.customMap(Collections.singletonMap("business","baomidou")) baomidou 为业务分包名成
+3.customMap(Collections.singletonMap("busPackageName","baomidou")) baomidou 为业务分包名成
 
 说明： 除最后一位，前面的为mybatis-plus-generator的版本号，最后一位为该版本迭代次数。
 

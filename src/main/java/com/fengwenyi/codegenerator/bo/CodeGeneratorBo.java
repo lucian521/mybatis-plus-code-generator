@@ -14,6 +14,9 @@ public class CodeGeneratorBo {
     // 包名
     private String packageName;
 
+    // 业务子包名
+    private String busPackageName;
+
     // 数据库类型
     private String dbType;
     // 数据库连接地址

@@ -43,7 +43,7 @@ public class MyAutoGenerator {
                     System.out.println(" tableInfo: "+ tableInfo.getEntityName()+" objectMap: "+ stringObjectMap.size());
                 })
                         //这里是自定义传入模板参数值
-                        .customMap(Collections.singletonMap("business","grain"))
+                       .customMap(Collections.singletonMap("busPackageName",bo.getBusPackageName()))
                         .customFile(new HashMap<String,String>(){{
                             //这里可以自定义自己的模板
                             Set<Entry<String, String>> entries = this.entrySet();

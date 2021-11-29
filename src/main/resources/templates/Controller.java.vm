@@ -11,11 +11,11 @@ import org.springframework.stereotype.Controller;
 #if(${superControllerClassPackage})
 import ${superControllerClassPackage};
 #end
-import ${package.Parent}.domain.converter.${business}.I${table.originalName}Convertor;
+import ${package.Parent}.domain.converter.${busPackageName}.I${table.originalName}Convertor;
 import ${package.Service}.${table.serviceName};
-import ${package.Parent}.api.dto.input.${business}.${table.originalName}ValidReq;
-import ${package.Parent}.api.dto.input.${business}.${table.originalName}Req;
-import ${package.Parent}.api.dto.output.${business}.${table.originalName}DTO;
+import ${package.Parent}.api.dto.input.${busPackageName}.${table.originalName}ValidReq;
+import ${package.Parent}.api.dto.input.${busPackageName}.${table.originalName}Req;
+import ${package.Parent}.api.dto.output.${busPackageName}.${table.originalName}DTO;
 import ${package.Entity}.${entity};
 import com.aliyun.gts.gmall.framework.api.dto.PageInfo;
 import com.aliyun.gts.gmall.framework.api.rest.dto.RestResponse;
@@ -47,7 +47,7 @@ import java.util.List;
 #else
 @Controller
 #end
-@RequestMapping("/${business}#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+@RequestMapping("/${busPackageName}#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
 #if(${kotlin})
 
 class ${table.controllerName} #if(${superControllerClass}) : ${superControllerClass}()#end

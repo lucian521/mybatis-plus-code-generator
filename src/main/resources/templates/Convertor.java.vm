@@ -1,11 +1,11 @@
-package ${package.Parent}.domain.converter.${business};
+package ${package.Parent}.domain.converter.${busPackageName};
 
 
 
 import ${package.Entity}.${entity};
-import ${package.Parent}.api.dto.output.${business}.${table.originalName}DTO;
-import ${package.Parent}.api.dto.input.${business}.${table.originalName}Req;
-import ${package.Parent}.api.dto.input.${business}.${table.originalName}ValidReq;
+import ${package.Parent}.api.dto.output.${busPackageName}.${table.originalName}DTO;
+import ${package.Parent}.api.dto.input.${busPackageName}.${table.originalName}Req;
+import ${package.Parent}.api.dto.input.${busPackageName}.${table.originalName}ValidReq;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import java.util.List;

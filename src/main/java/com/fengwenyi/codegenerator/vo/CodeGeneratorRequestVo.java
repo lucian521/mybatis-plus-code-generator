@@ -12,6 +12,9 @@ public class CodeGeneratorRequestVo {
     // 包名
     private String packageName;
 
+    // 业务子包名
+    private String busPackageName;
+
     // 数据库类型
     private String dbTypeName;
     // 数据库服务器

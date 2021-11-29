@@ -1,4 +1,4 @@
-package ${package.Parent}.api.dto.output.${business};
+package ${package.Parent}.api.dto.output.${busPackageName};
 
 
 #if(${swagger})
