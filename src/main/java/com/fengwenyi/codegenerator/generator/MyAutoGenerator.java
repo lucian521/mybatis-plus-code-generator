@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author <a href="https://www.fengwenyi.com">Erwin Feng</a>
+ * @author lucian
  * @since 2021-09-26
  */
 public class MyAutoGenerator {

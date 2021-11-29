@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * @author <a href="https://www.fengwenyi.com">Erwin Feng</a>
+ * @author lucian
  * @since 2021-07-12
  */
 @Controller

@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * @ClassName: BaseEntity
  * @Description: 实体类基类
- * @author zhangyu
+ * @author lucian
  * @date 2016年8月3日下午5:16:21
  * @version V1.0
  *

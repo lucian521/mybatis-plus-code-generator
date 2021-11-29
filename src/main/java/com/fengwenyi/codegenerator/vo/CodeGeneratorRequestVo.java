@@ -3,7 +3,7 @@ package com.fengwenyi.codegenerator.vo;
 import lombok.Data;
 
 /**
- * @author <a href="https://www.fengwenyi.com">Erwin Feng</a>
+ * @author lucian
  * @since 2021-07-12
  */
 @Data
