@@ -1,0 +1,154 @@
+package ${package.Controller};
+
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import lombok.extern.slf4j.Slf4j;
+#if(${restControllerStyle})
+import org.springframework.web.bind.annotation.RestController;
+#else
+import org.springframework.stereotype.Controller;
+#end
+#if(${superControllerClassPackage})
+import ${superControllerClassPackage};
+#end
+import ${package.Parent}.domain.converter.${business}.I${table.originalName}Convertor;
+import ${package.Service}.${table.serviceName};
+import ${package.Parent}.api.dto.input.${business}.${table.originalName}ValidReq;
+import ${package.Parent}.api.dto.input.${business}.${table.originalName}Req;
+import ${package.Parent}.api.dto.output.${business}.${table.originalName}DTO;
+import ${package.Entity}.${entity};
+import com.aliyun.gts.gmall.framework.api.dto.PageInfo;
+import com.aliyun.gts.gmall.framework.api.rest.dto.RestResponse;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import java.util.List;
+/**
+ * <p>
+ * $!{table.comment} 前端控制器
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+
+@Slf4j
+@Api(tags = "$!{table.comment}")
+#if(${restControllerStyle})
+@RestController
+#else
+@Controller
+#end
+@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+#if(${kotlin})
+
+class ${table.controllerName} #if(${superControllerClass}) : ${superControllerClass}()#end
+
+#else
+#if(${superControllerClass})
+public class ${table.controllerName} extends ${superControllerClass} {
+#else
+public class ${table.controllerName} {
+#end
+
+    @Resource
+    private ${table.serviceName} ${table.serviceName.substring(0, 1).toLowerCase()}${table.serviceName.substring(1)};
+
+    @Resource
+    private I${table.originalName}Convertor i${table.originalName}Convertor;
+
+    /**
+     * $!{table.comment}添加
+     * @param req
+     * @return
+     */
+    @ApiOperation("$!{table.comment}添加")
+    @PostMapping("/add")
+    public RestResponse<String> add(@RequestBody ${table.originalName}ValidReq req) throws BusinessException {
+        ${entity} ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)} = i${table.originalName}Convertor.reqValid2Do(req);
+        ${table.serviceName.substring(0, 1).toLowerCase()}${table.serviceName.substring(1)}.save(${entity.substring(0, 1).toLowerCase()}${entity.substring(1)});
+        return RestResponse.ok(CommonResponseCode.Success.getCode());
+    }
+
+
+    /**
+     * $!{table.comment}更新
+     * @param req
+     * @return
+     */
+    @ApiOperation("$!{table.comment}更新")
+    @PostMapping("/update")
+    public RestResponse<String> update(@RequestBody ${table.originalName}ValidReq req) throws BusinessException {
+        if(req == null || null == req.getId() ){
+           throw new BusinessException(Constants.ID_NULL);
+        }
+        ${entity} ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)} = i${table.originalName}Convertor.reqValid2Do(req);
+        ${table.serviceName.substring(0, 1).toLowerCase()}${table.serviceName.substring(1)}.updateById(${entity.substring(0, 1).toLowerCase()}${entity.substring(1)});
+        return RestResponse.ok(CommonResponseCode.Success.getCode());
+    }
+
+    /**
+     * $!{table.comment}详情
+     * @Deprecated
+     * @param req
+     * @return
+     */
+    @ApiOperation("$!{table.comment}详情 prd ")
+    @PostMapping("/detailById")
+    public RestResponse<XyCompanyDTO> detailById(@RequestBody ${table.originalName}Req req) throws BusinessException {
+        //判断库点 id 是否为空
+        if(req == null || null == req.getId() ){
+           throw new BusinessException(Constants.ID_NULL);
+        }
+        return RestResponse.okWithoutMsg(i${table.originalName}Convertor.do2Dto(${table.serviceName.substring(0, 1).toLowerCase()}${table.serviceName.substring(1)}.getById(req.getId())));
+    }
+
+    /**
+     *  $!{table.comment}删除
+     * @param req
+     * @return
+     */
+    @ApiOperation(" $!{table.comment}删除")
+    @PostMapping("/delete")
+    public RestResponse<String> delete(@RequestBody ${table.originalName}Req req){
+        //判断库点 id 是否为空
+        if(req == null || null == req.getId() ){
+             throw new BusinessException(Constants.ID_NULL);
+        }
+        ${table.serviceName.substring(0, 1).toLowerCase()}${table.serviceName.substring(1)}.removeById(req.getId());
+        return RestResponse.ok(CommonResponseCode.Success.getCode());
+    }
+
+    /**
+     * $!{table.comment}列表查询
+     * @param req
+     * @return
+     */
+    @ApiOperation("$!{table.comment}列表查询")
+    @PostMapping("/list")
+    public RestResponse<List<${table.originalName}DTO>> pageList(@RequestBody ${table.originalName}Req req){
+        QueryWrapper<${entity}> queryWrapper = new QueryWrapper<${entity}>();
+       // queryWrapper.eq("status", Constants.XYCOMPANY_STATUS_ENABLED);
+        List<${entity}> list = ${table.serviceName.substring(0, 1).toLowerCase()}${table.serviceName.substring(1)}.list(queryWrapper);
+        return RestResponse.okWithoutMsg(i${table.originalName}Convertor.dos2Dtos(list));
+    }
+
+    /**
+     * $!{table.comment}分页列表查询
+     * @param req
+     * @return
+     */
+    @ApiOperation("$!{table.comment}分页列表查询")
+    @PostMapping("/pageList")
+    public RestResponse<PageInfo<${table.originalName}DTO>> pageList(@RequestBody ${table.originalName}Req req){
+        QueryWrapper<${entity}> queryWrapper = new QueryWrapper<${entity}>();
+
+        Page page = ${table.serviceName.substring(0, 1).toLowerCase()}${table.serviceName.substring(1)}.page(new Page(req.getPage().getPageNo(), req.getPage().getPageSize()));
+
+        PageInfo<${table.originalName}DTO> pageInfo = new PageInfo<${table.originalName}DTO>(page.getTotal(), i${table.originalName}Convertor.dos2Dtos(page.getRecords()));
+        return RestResponse.okWithoutMsg(pageInfo);
+    }
+
+
+}
+
+#end

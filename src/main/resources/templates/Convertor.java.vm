@@ -1,0 +1,68 @@
+package ${package.Parent}.domain.converter.${business};
+
+
+#if(${swagger})
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+#end
+#if(${entityLombokModel})
+import lombok.Data;
+#end
+import ${package.Entity}.${entity};
+import import org.mapstruct.Mapping;
+import ${package.Parent}.api.dto.output.${business}.${table.originalName}DTO;
+import ${package.Parent}.api.dto.input.${business}.${table.originalName}Req;
+import ${package.Parent}.api.dto.input.${business}.${table.originalName}ValidReq;
+
+/**
+ * <p> DTO
+ * $!{table.comment}
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+
+@Mapper(componentModel = "spring")
+public class I${table.originalName}Convertor {
+
+    /**
+     * req 转 DO
+     * @param req
+     * @return
+     */
+     @Mapping(target = "page", ignore = true)
+     ${entity} req2Do(${table.originalName}Req req);
+
+    /**
+     * validReq 转 DO
+     * @param req
+     * @return
+     */
+     @Mapping(target = "page", ignore = true)
+     ${entity} validReq2Do(${table.originalName}ValidReq req);
+
+    /**
+     *
+     * @param reqList
+     * @return
+     */
+    @Mapping(target = "page", ignore = true)
+    List<${entity}> reqs2Dos(List<${table.originalName}Req> reqList);
+
+    /**
+     *
+     * @param reqList
+     * @return
+     */
+    @Mapping(target = "page", ignore = true)
+    List<${entity}> validReqs2Dos(List<${table.originalName}ValidReq> reqList);
+
+    /**
+     *
+     * @param doList
+     * @return
+     */
+    List<${table.originalName}DTO> dos2Dtos(List<${entity}> doList);
+
+}
