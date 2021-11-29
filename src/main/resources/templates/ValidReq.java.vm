@@ -1,4 +1,4 @@
-package ${package.Parent}.api.dto.input.${busPackageName};
+package ${package.Parent}.api.dto.input#if("$!{busPackageName}"!="").${busPackageName}#end;
 
 
 #if(${swagger})

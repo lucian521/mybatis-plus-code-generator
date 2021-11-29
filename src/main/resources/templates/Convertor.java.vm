@@ -1,11 +1,11 @@
-package ${package.Parent}.domain.converter.${busPackageName};
+package ${package.Parent}.domain.converter#if("$!{busPackageName}"!="").${busPackageName}#end;
 
 
 
 import ${package.Entity}.${entity};
-import ${package.Parent}.api.dto.output.${busPackageName}.${table.originalName}DTO;
-import ${package.Parent}.api.dto.input.${busPackageName}.${table.originalName}Req;
-import ${package.Parent}.api.dto.input.${busPackageName}.${table.originalName}ValidReq;
+import ${package.Parent}.api.dto.output#if("$!{busPackageName}"!="").${busPackageName}#end.${table.originalName}DTO;
+import ${package.Parent}.api.dto.input#if("$!{busPackageName}"!="").${busPackageName}#end.${table.originalName}Req;
+import ${package.Parent}.api.dto.input#if("$!{busPackageName}"!="").${busPackageName}#end.${table.originalName}ValidReq;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import java.util.List;

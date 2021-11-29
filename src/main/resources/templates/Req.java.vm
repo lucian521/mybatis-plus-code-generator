@@ -1,4 +1,4 @@
-package ${package.Parent}.api.dto.input.${busPackageName};
+package ${package.Parent}.api.dto.input#if("$!{busPackageName}"!="").${busPackageName}#end;
 
 
 #if(${swagger})
@@ -46,6 +46,7 @@ public class ${table.originalName}Req {
         #end
     #end
     private ${field.propertyType} ${field.propertyName};
+
 #end
 ## ----------  END 字段循环遍历  ----------
 

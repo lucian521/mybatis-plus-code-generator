@@ -11,11 +11,11 @@ import org.springframework.stereotype.Controller;
 #if(${superControllerClassPackage})
 import ${superControllerClassPackage};
 #end
-import ${package.Parent}.domain.converter.${busPackageName}.I${table.originalName}Convertor;
+import ${package.Parent}.domain.converter#if("$!{busPackageName}"!="").${busPackageName}#end.I${table.originalName}Convertor;
 import ${package.Service}.${table.serviceName};
-import ${package.Parent}.api.dto.input.${busPackageName}.${table.originalName}ValidReq;
-import ${package.Parent}.api.dto.input.${busPackageName}.${table.originalName}Req;
-import ${package.Parent}.api.dto.output.${busPackageName}.${table.originalName}DTO;
+import ${package.Parent}.api.dto.input#if("$!{busPackageName}"!="").${busPackageName}#end.${table.originalName}ValidReq;
+import ${package.Parent}.api.dto.input#if("$!{busPackageName}"!="").${busPackageName}#end.${table.originalName}Req;
+import ${package.Parent}.api.dto.output#if("$!{busPackageName}"!="").${busPackageName}#end.${table.originalName}DTO;
 import ${package.Entity}.${entity};
 import com.aliyun.gts.gmall.framework.api.dto.PageInfo;
 import com.aliyun.gts.gmall.framework.api.rest.dto.RestResponse;
