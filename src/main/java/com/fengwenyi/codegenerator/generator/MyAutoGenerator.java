@@ -43,14 +43,14 @@ public class MyAutoGenerator {
                     System.out.println(" tableInfo: "+ tableInfo.getEntityName()+" objectMap: "+ stringObjectMap.size());
                 })
                         //这里是自定义传入模板参数值
-                        .customMap(Collections.singletonMap("business","baomidou"))
+                        .customMap(Collections.singletonMap("business","grain"))
                         .customFile(new HashMap<String,String>(){{
                             //这里可以自定义自己的模板
                             Set<Entry<String, String>> entries = this.entrySet();
                             put("Req.java", "/templates/Req.java.vm");
                             put("ValidReq.java", "/templates/ValidReq.java.vm");
                             put("DTO.java","/templates/DTO.java.vm");
-                            put("Converor.java","/templates/Convertor.java.vm");
+                            put("Convertor.java","/templates/Convertor.java.vm");
                             put("Controller.java","/templates/Controller.java.vm");
                         }})
                         .build()
@@ -64,7 +64,7 @@ public class MyAutoGenerator {
                         //String controllerName =  tableInfo.getControllerName();
                          String otherPath = getPathInfo(OutputFile.other);
                          customFile.forEach((key,value) -> {
-                             if( key.contains("Converor")){
+                             if( key.contains("Convertor")){
 
                                  String fileName = String.format((otherPath+File.separator+"I%s"),originalName+key);
                                  outputFile(new File(fileName),objectMap,value);

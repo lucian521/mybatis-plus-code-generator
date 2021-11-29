@@ -21,6 +21,15 @@ import com.aliyun.gts.gmall.framework.api.dto.PageInfo;
 import com.aliyun.gts.gmall.framework.api.rest.dto.RestResponse;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import javax.annotation.Resource;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import com.aliyun.gts.gmall.center.user.core.exception.BusinessException;
+import com.aliyun.gts.gmall.center.user.core.constants.Constants;
+import com.aliyun.gts.gmall.framework.api.consts.CommonResponseCode;
 import java.util.List;
 /**
  * <p>
@@ -38,7 +47,7 @@ import java.util.List;
 #else
 @Controller
 #end
-@RequestMapping("#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
+@RequestMapping("/${business}#if(${package.ModuleName})/${package.ModuleName}#end/#if(${controllerMappingHyphenStyle})${controllerMappingHyphen}#else${table.entityPath}#end")
 #if(${kotlin})
 
 class ${table.controllerName} #if(${superControllerClass}) : ${superControllerClass}()#end
@@ -64,7 +73,7 @@ public class ${table.controllerName} {
     @ApiOperation("$!{table.comment}添加")
     @PostMapping("/add")
     public RestResponse<String> add(@RequestBody ${table.originalName}ValidReq req) throws BusinessException {
-        ${entity} ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)} = i${table.originalName}Convertor.reqValid2Do(req);
+        ${entity} ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)} = i${table.originalName}Convertor.validReq2Do(req);
         ${table.serviceName.substring(0, 1).toLowerCase()}${table.serviceName.substring(1)}.save(${entity.substring(0, 1).toLowerCase()}${entity.substring(1)});
         return RestResponse.ok(CommonResponseCode.Success.getCode());
     }
@@ -81,7 +90,7 @@ public class ${table.controllerName} {
         if(req == null || null == req.getId() ){
            throw new BusinessException(Constants.ID_NULL);
         }
-        ${entity} ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)} = i${table.originalName}Convertor.reqValid2Do(req);
+        ${entity} ${entity.substring(0, 1).toLowerCase()}${entity.substring(1)} = i${table.originalName}Convertor.validReq2Do(req);
         ${table.serviceName.substring(0, 1).toLowerCase()}${table.serviceName.substring(1)}.updateById(${entity.substring(0, 1).toLowerCase()}${entity.substring(1)});
         return RestResponse.ok(CommonResponseCode.Success.getCode());
     }
@@ -94,7 +103,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation("$!{table.comment}详情 prd ")
     @PostMapping("/detailById")
-    public RestResponse<XyCompanyDTO> detailById(@RequestBody ${table.originalName}Req req) throws BusinessException {
+    public RestResponse<${table.originalName}DTO> detailById(@RequestBody ${table.originalName}Req req) throws BusinessException {
         //判断库点 id 是否为空
         if(req == null || null == req.getId() ){
            throw new BusinessException(Constants.ID_NULL);
@@ -109,7 +118,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation(" $!{table.comment}删除")
     @PostMapping("/delete")
-    public RestResponse<String> delete(@RequestBody ${table.originalName}Req req){
+    public RestResponse<String> delete(@RequestBody ${table.originalName}Req req) throws BusinessException {
         //判断库点 id 是否为空
         if(req == null || null == req.getId() ){
              throw new BusinessException(Constants.ID_NULL);
@@ -125,7 +134,7 @@ public class ${table.controllerName} {
      */
     @ApiOperation("$!{table.comment}列表查询")
     @PostMapping("/list")
-    public RestResponse<List<${table.originalName}DTO>> pageList(@RequestBody ${table.originalName}Req req){
+    public RestResponse<List<${table.originalName}DTO>> list(@RequestBody ${table.originalName}Req req){
         QueryWrapper<${entity}> queryWrapper = new QueryWrapper<${entity}>();
        // queryWrapper.eq("status", Constants.XYCOMPANY_STATUS_ENABLED);
         List<${entity}> list = ${table.serviceName.substring(0, 1).toLowerCase()}${table.serviceName.substring(1)}.list(queryWrapper);

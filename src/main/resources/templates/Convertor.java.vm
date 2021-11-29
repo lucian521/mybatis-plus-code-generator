@@ -1,18 +1,14 @@
 package ${package.Parent}.domain.converter.${business};
 
 
-#if(${swagger})
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-#end
-#if(${entityLombokModel})
-import lombok.Data;
-#end
+
 import ${package.Entity}.${entity};
-import import org.mapstruct.Mapping;
 import ${package.Parent}.api.dto.output.${business}.${table.originalName}DTO;
 import ${package.Parent}.api.dto.input.${business}.${table.originalName}Req;
 import ${package.Parent}.api.dto.input.${business}.${table.originalName}ValidReq;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import java.util.List;
 
 /**
  * <p> DTO
@@ -24,7 +20,7 @@ import ${package.Parent}.api.dto.input.${business}.${table.originalName}ValidReq
  */
 
 @Mapper(componentModel = "spring")
-public class I${table.originalName}Convertor {
+public interface I${table.originalName}Convertor {
 
     /**
      * req 转 DO
@@ -57,6 +53,13 @@ public class I${table.originalName}Convertor {
      */
     @Mapping(target = "page", ignore = true)
     List<${entity}> validReqs2Dos(List<${table.originalName}ValidReq> reqList);
+
+    /**
+     *
+     * @param o
+     * @return
+     */
+    ${table.originalName}DTO do2Dto(${entity} o);
 
     /**
      *

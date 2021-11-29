@@ -35,7 +35,7 @@ public class ${table.originalName}DTO {
         #end
         #if("$!field.comment" != "")
             #if(${swagger})
-            @ApiModelProperty("${field.comment}")
+    @ApiModelProperty("${field.comment}")
             #else
             /**
              * ${field.comment}
@@ -104,6 +104,5 @@ public class ${table.originalName}DTO {
                 "}";
     }
     #end
-    @ApiModelProperty("页码")
-    private PageParam page;
+
 }

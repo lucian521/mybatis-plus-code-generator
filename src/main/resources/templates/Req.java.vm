@@ -4,12 +4,12 @@ package ${package.Parent}.api.dto.input.${business};
 #if(${swagger})
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import com.aliyun.gts.gmall.framework.api.dto.PageParam;
 #end
 #if(${entityLombokModel})
 import lombok.Data;
 #end
-
+import com.aliyun.gts.gmall.framework.api.dto.PageParam;
+import javax.validation.constraints.Size;
 /**
  * <p> req
  * $!{table.comment}
@@ -30,7 +30,9 @@ public class ${table.originalName}Req {
 
 ## ----------  BEGIN 字段循环遍历  ----------
 #foreach($field in ${table.fields})
-
+    #if(${field.propertyType}=="String")
+    @Size(max=${field.metaInfo.length},message = "${field.comment},长度不能超过${field.metaInfo.length}!")
+    #end
     #if(${field.keyFlag})
         #set($keyPropertyName=${field.propertyName})
     #end
