@@ -4,9 +4,10 @@
 
 3.5.1.3
 
-1.定制修改了mybatis-plus 中TableInfo 代码，需要将此类class ，替换到 com.baomidou:mybatis-plus-generator jar 包中
+1.定制修改了mybatis-plus 中TableInfo 代码，需要将此类class ，替换到 com.baomidou:mybatis-plus-generator jar 包中  
 2.包名设置为 公共包最大包目录
-3.customMap(Collections.singletonMap("busPackageName","baomidou")) baomidou 为业务分包名成
+
+
 
 说明： 除最后一位，前面的为mybatis-plus-generator的版本号，最后一位为该版本迭代次数。
 
@@ -23,7 +24,7 @@
 * [x] 自动生成xml文件
 
 * [x] 自动生成service接口
- 
+
 * [x] 自动生成service实现类
 
 * [x] model支持Builder模式
@@ -33,6 +34,10 @@
 * [x] 支持生成数据库字段常量
 
 * [x] 支持生成Kotlin代码
+
+* [x] Controller 增删改查分页查询
+
+* [x] Controller Convertor DTO 
 
 * [x] ……more……
 
