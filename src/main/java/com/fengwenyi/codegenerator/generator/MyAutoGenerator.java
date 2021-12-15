@@ -52,6 +52,7 @@ public class MyAutoGenerator {
                             put("DTO.java","/templates/DTO.java.vm");
                             put("Convertor.java","/templates/Convertor.java.vm");
                             put("Controller.java","/templates/Controller.java.vm");
+                            put("Mapper.xml","/templates/mapper.xml.vm");
                         }})
                         .build()
                 )
