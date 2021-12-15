@@ -50,7 +50,7 @@ public class Config {
     public static final String FIELD_VERSION_NAME = "version";
 
     /** 作者 */
-    public static final String AUTHOR = "Erwin Feng";
+    public static final String AUTHOR = "Lucian";
 
     /** 生成文件的输出目录 */
     public static String PROJECT_PATH = System.getProperty("user.dir");

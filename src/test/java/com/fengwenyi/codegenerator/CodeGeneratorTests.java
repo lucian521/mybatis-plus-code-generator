@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.DbType;
 import org.junit.jupiter.api.Test;
 
 /**
- * @author Erwin Feng
+ * @author Lucian
  * @since 2020/5/29
  */
 public class CodeGeneratorTests {

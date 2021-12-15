@@ -16,7 +16,7 @@ layui.use(function() {
     let outputDir = getOutputDir();
 
     if (isEmpty(author)) {
-        author = '<a href="https://www.fengwenyi.com">Erwin Feng</a>';
+        author = '<a href="https://www.fengwenyi.com">Lucian</a>';
     }
 
     jQuery("#author").val(author);

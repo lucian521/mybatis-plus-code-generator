@@ -8,14 +8,16 @@ import io.swagger.annotations.ApiModelProperty;
 #if(${entityLombokModel})
 import lombok.Data;
 #end
+#foreach($pkg in ${table.dtoImportPackages})
+import ${pkg};
+#end
 import com.aliyun.gts.gmall.framework.api.dto.PageParam;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
+
 
 /**
  * <p> req

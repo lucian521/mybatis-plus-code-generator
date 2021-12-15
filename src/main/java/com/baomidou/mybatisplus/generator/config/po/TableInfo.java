@@ -54,6 +54,11 @@
 //    private final Set<String> importPackages = new TreeSet<>();
 //
 //    /**
+//     * DTO包导入信息
+//     */
+//    private final Set<String> dtoImportPackages = new TreeSet();
+//
+//    /**
 //     * 是否转换
 //     */
 //    private boolean convert;
@@ -289,6 +294,7 @@
 //        this.serviceImplName = strategyConfig.service().getConverterServiceImplFileName().convert(entityName);
 //        this.controllerName = strategyConfig.controller().getConverterFileName().convert(entityName);
 //        this.importPackage();
+//        this.dtoImportPackage();
 //    }
 //
 //    public TableInfo setComment(String comment) {
@@ -370,4 +376,69 @@
 //    public void setOriginalName(String originalName) {
 //        this.originalName = originalName;
 //    }
+//
+//    /**
+//     * DTO导包处理
+//     *
+//     * @since 3.5.0
+//     */
+//    public void dtoImportPackage() {
+///*        String superEntity = entity.getSuperClass();
+//        if (StringUtils.isNotBlank(superEntity)) {
+//            // 自定义父类
+//            this.importPackages.add(superEntity);
+//        } else {
+//            if (entity.isActiveRecord()) {
+//                // 无父类开启 AR 模式
+//                this.importPackages.add(Model.class.getCanonicalName());
+//            }
+//        }
+//        if (entity.isSerialVersionUID() || entity.isActiveRecord()) {
+//            this.importPackages.add(Serializable.class.getCanonicalName());
+//        }
+//        if (this.isConvert()) {
+//            this.importPackages.add(TableName.class.getCanonicalName());
+//        }
+//        IdType idType = entity.getIdType();
+//        if (null != idType && this.isHavePrimaryKey()) {
+//            // 指定需要 IdType 场景
+//            this.importPackages.add(IdType.class.getCanonicalName());
+//            this.importPackages.add(TableId.class.getCanonicalName());
+//        }*/
+//        this.fields.forEach(field -> {
+//            IColumnType columnType = field.getColumnType();
+//            if (null != columnType && null != columnType.getPkg()) {
+//                dtoImportPackages.add(columnType.getPkg());
+//            }
+///*            if (field.isKeyFlag()) {
+//                // 主键
+//                if (field.isConvert() || field.isKeyIdentityFlag()) {
+//                    dtoImportPackages.add(TableId.class.getCanonicalName());
+//                }
+//                // 自增
+//                if (field.isKeyIdentityFlag()) {
+//                    dtoImportPackages.add(IdType.class.getCanonicalName());
+//                }
+//            } else if (field.isConvert()) {
+//                // 普通字段
+//                dtoImportPackages.add(com.baomidou.mybatisplus.annotation.TableField.class.getCanonicalName());
+//            }
+//            if (null != field.getFill()) {
+//                // 填充字段
+//                dtoImportPackages.add(com.baomidou.mybatisplus.annotation.TableField.class.getCanonicalName());
+//                //TODO 好像default的不用处理也行,这个做优化项目.
+//                dtoImportPackages.add(FieldFill.class.getCanonicalName());
+//            }
+//            if (field.isVersionField()) {
+//                this.dtoImportPackages.add(Version.class.getCanonicalName());
+//            }
+//            if (field.isLogicDeleteField()) {
+//                this.dtoImportPackages.add(TableLogic.class.getCanonicalName());
+//            }*/
+//        });
+//    }
+//    public Set<String> getDtoImportPackages() {
+//        return dtoImportPackages;
+//    }
+//
 //}
